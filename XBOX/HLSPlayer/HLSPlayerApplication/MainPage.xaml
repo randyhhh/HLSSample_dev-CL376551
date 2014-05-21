@@ -1,0 +1,100 @@
+﻿<navigation:Page x:Class="HLSXBOXlayer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:xbox="clr-namespace:Microsoft.Xbox.Controls;assembly=Microsoft.Xbox"
+    mc:Ignorable="d"
+    d:DesignHeight="720" d:DesignWidth="1280">
+    <navigation:Page.Resources>
+        <LinearGradientBrush x:Key="PrimaryTileBackgroundBrush" StartPoint="0.0011151,-0.00173214" EndPoint="0.961127,0.958279">
+            <GradientStop Color="#FF3770BC" Offset="0"/>
+            <GradientStop Color="#FF234676" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="ApplicationBackgroundBrush" StartPoint="0.0011151,-0.00173214" EndPoint="0.961127,0.958279">
+            <GradientStop Color="#FFE9E9E9" Offset="0"/>
+            <GradientStop Color="#FFC6C6C6" Offset="1"/>
+        </LinearGradientBrush>
+    </navigation:Page.Resources>
+
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource ApplicationBackgroundBrush}">
+
+        <TextBlock x:Name="PageTitle" 
+                   FontFamily="Segoe UI Light" 
+                   FontSize="25" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" 
+                   Margin="140,110,0,0" 
+                   Width="600"
+                   Text="HTTP Live Streaming (HLS) Sample" 
+                   Foreground="Black"/>
+
+        <Grid x:Name="ButtonsGrid" Background="Transparent" Margin="50,0,50,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Button1"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Width="360"
+                    Height="300"
+                    HorizontalAlignment="Center" 
+                    d:LayoutOverrides="Width" 
+                    Background="{StaticResource PrimaryTileBackgroundBrush}"
+                    Click="Button1_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock FontFamily="Segoe UI Light" FontSize="16"  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap">
+                               <Run Text="Apple's Test Stream for iPhone" FontSize="24"  FontWeight="Normal" Foreground="White"/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run Text="VOD content" Foreground="White"/>
+                                <LineBreak/>
+                                <Run Text="Doesn't use any encryption" Foreground="White"/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run Text="http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8" FontSize="16" Foreground="White"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+            <!--<Button x:Name="Button2"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Width="360"
+                    Height="300"
+                    HorizontalAlignment="Center" 
+                    d:LayoutOverrides="Width" 
+                    Background="{StaticResource PrimaryTileBackgroundBrush}"
+                    Click="Button2_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock FontFamily="Segoe UI Light" FontSize="16"  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap">
+                             <Run Text="NASA TV" FontSize="24"  FontWeight="Normal" Foreground="White"/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run Text="Live content" Foreground="White"/>
+                                <LineBreak/>
+                                <Run Text="Doesn't use any encryption" Foreground="White"/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run Text="http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8" FontSize="16" Foreground="White"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>-->
+
+        </Grid>
+
+        <xbox:Feedback Margin="0,520,30,0"/>
+    </Grid>
+</navigation:Page>

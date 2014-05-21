@@ -1,0 +1,51 @@
+﻿<navigation:Page x:Class="HLSPlayerApplication.FullScreenPlayer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:xbox="clr-namespace:Microsoft.Xbox.Controls;assembly=Microsoft.Xbox"
+    xmlns:HLSPlayerApplication="clr-namespace:HLSPlayerApplication" mc:Ignorable="d"
+    d:DesignHeight="720" d:DesignWidth="1280"
+    Title="FullScreenPlayer Page" >
+
+    <Grid x:Name="LayoutRoot" Width="1280" Height="720" Background="DarkGray" Loaded="LayoutRoot_Loaded">
+
+        <xbox:MediaTransport x:Name="MediaTransport" 
+                             IsLiveEnabled="False" 
+                             IsSkipBackEnabled="False" 
+                             IsSkipForwardEnabled="False" 
+                             IsDisplayModeEnabled="True"
+                             MediaAssetId="SomeAssetID">
+            <HLSPlayerApplication:HLSMediaElementAdapter x:Name="mediaElementAdapter" />
+        </xbox:MediaTransport>
+        <TextBlock   Name="ClosedCaptionTextBlock" TextAlignment="Left" Margin="120,120,120,120"  TextWrapping="Wrap"/>
+
+
+        <StackPanel VerticalAlignment="Top" Margin="160,575,160,0" Background="LightGray" Opacity="0.65">
+            <TextBlock Text="Available bitrates" Name="availableBitratesText" FontSize="14" TextAlignment="Center" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="User Bitrate Command" Name="userCommandBitrateTextBlock" FontSize="14" FontWeight="Bold" Foreground="Black" TextAlignment="Center" Margin="20,0,20,0"/>
+                <TextBlock Text="Download Bitrate" Name="downloadBitrateTextBlock" FontSize="14" FontWeight="Bold" Foreground="Red" TextAlignment="Center"  Margin="20,0,20,0"/>
+                <TextBlock Text="Playback Bitrate" Name="playbackBitrateTextBlock" FontSize="14" FontWeight="Bold" Foreground="Blue" TextAlignment="Center" Margin="20,0,20,0"/>
+            </StackPanel>
+            <TextBlock Text="URL" Name="urlTextBlock" FontSize="16" TextAlignment="Center" />
+            <TextBlock Name="bufferLevelTextBlock" Text="BufferLevel" FontSize="16" TextAlignment="Center" />
+            <TextBlock Name="buttonGuideTextBlock1"
+                       Text=" Press Y to go back, Dpad Up/Down to switch bitrate streams, Dpad Left/Right to use heuristics (auto bitrate switching), X to enable/disable closed captioning." 
+                       FontSize="14" TextAlignment="Center" />
+            <TextBlock Name="buttonGuideTextBlock2"  Text="All other buttons are consumed by MediaTransportControl." 
+                       FontSize="14" TextAlignment="Center" />
+        </StackPanel>
+        <TextBlock FontSize="24" Name="adsText" Foreground="White" Text="" TextAlignment="Center" Margin="200,138,536,518" />
+        <TextBlock FontSize="16" Name="GCData1" Foreground="White" Text="" TextAlignment="Center" Margin="200,220,236,436" />
+        <TextBlock FontSize="16" Name="GCData2" Foreground="White" Text="" TextAlignment="Center" Margin="200,312,236,344" />
+        <TextBlock FontSize="16" Name="GCData3" Foreground="White" Text="" TextAlignment="Center" Margin="200,418,236,238" />
+        <TextBlock FontSize="16" Name="ManagedPool" Foreground="White" Text="" TextAlignment="Center" Margin="50,490,34,138" />
+        <TextBlock Height="91" HorizontalAlignment="Left" Margin="200,373,0,0" Name="textBlockMessage" Text="" VerticalAlignment="Top" Width="880" Foreground="Red" FontSize="22" TextAlignment="Center" Visibility="Collapsed" />
+    </Grid>
+</navigation:Page>
+
+
+
+

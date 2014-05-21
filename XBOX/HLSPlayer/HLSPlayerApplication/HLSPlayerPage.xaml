@@ -1,0 +1,21 @@
+﻿<navigation:Page x:Class="HLSPlayerApplication.HLSPlayerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:xbox="clr-namespace:Microsoft.Xbox.Controls;assembly=Microsoft.Xbox"
+    xmlns:HLSPlayerApplication="clr-namespace:HLSPlayerApplication" mc:Ignorable="d"
+    d:DesignHeight="720" d:DesignWidth="1280"
+    Title="FullScreenPlayer Page" >
+
+    <Grid x:Name="LayoutRoot" Width="1280" Height="720" Background="DarkGray" >
+        <HLSPlayerApplication:RefAppPlayer x:Name="Player" RetryInterval="00:00:15"
+                RetryDuration="00:01:00" StopOnBack="True" CaptionsVisibility="Hidden" AutoPlay="True">
+        </HLSPlayerApplication:RefAppPlayer>
+    </Grid>
+</navigation:Page>
+
+
+
+

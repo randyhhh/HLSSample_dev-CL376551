@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8F1A0551-9362-45DF-9E2C-DA3CDB4CD83D}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.SilverlightMediaFramework.Plugins.Advertising.Vpaid</RootNamespace>
+    <AssemblyName>MMPPF.Plugins.Vpaid.Xbox</AssemblyName>
+    <DesignTime Condition="'$(SolutionPath)'!='' AND Exists('$(SolutionPath)')">true</DesignTime>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkDirectory>$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0\</TargetFrameworkDirectory>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName></SccProjectName>
+    <SccLocalPath></SccLocalPath>
+    <SccAuxPath></SccAuxPath>
+    <SccProvider></SccProvider>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <!-- Work around for a resgen on 64-bit OS issue -->
+  <PropertyGroup>
+    <ResGenTrackerFrameworkPath>$(MSBuildToolsPath32)</ResGenTrackerFrameworkPath>
+    <ResGenTrackerSDKPath>$(SDK40ToolsPath)</ResGenTrackerSDKPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;OOB</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;OOB</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Microsoft.SilverlightMediaFramework.Plugins.Advertising.Vpaid.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Media.SmoothStreaming" />
+    <Reference Include="MMPPF.Core.Xbox" />
+    <Reference Include="MMPPF.Plugins.Xbox" />
+    <Reference Include="MMPPF.Utilities.Xbox" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.Xbox">
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Players\AdaptiveMediaElementAdapter.cs" />
+    <Compile Include="Players\AdaptiveVideoAdPlayerXbox.cs" />
+    <Compile Include="Players\AdClipLinearAdPlayerXbox.cs" />
+    <Compile Include="Players\ImageMediaElementAdapter.cs" />
+    <Compile Include="Players\ProgressiveMediaElementAdapter.cs" />
+    <Compile Include="Players\ImageAdPlayerXbox.cs" />
+    <Compile Include="Players\MediaElementAdapterBase.cs" />
+    <Compile Include="Players\ProgressiveVideoAdPlayerXbox.cs" />
+    <Compile Include="Plugins\AdaptiveVideoAdPlayerFactoryXbox.cs" />
+    <Compile Include="Plugins\AdClipLinearAdPlayerFactoryXbox.cs" />
+    <Compile Include="Plugins\ImageAdPlayerFactoryXbox.cs" />
+    <Compile Include="Plugins\ProgressiveVideoAdPlayerFactoryXbox.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Plugins.Advertising\MMPPF.Plugins.Advertising.Xbox.csproj">
+      <Project>{C382AA52-AA5E-4AC9-98AC-2C9717D810F9}</Project>
+      <Name>MMPPF.Plugins.Advertising.Xbox</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Microsoft.SilverlightMediaFramework.Plugins.Advertising.Vpaid.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Xbox 360 ADK\Microsoft.Xbox360.Adk.App.targets" />
+  <!-- Ensure that projects won't try to, unsuccessfully, build in Blend -->
+  <Target Name="ValidateBuildEnvironment">
+    <Error Text="LakeView projects cannot be built in Blend. Use Visual Studio to build and deploy this project." Condition="'$(DesignTime)'=='true' AND '$(BuildingInsideExpressionBlend)'=='true'" />
+  </Target>
+  <PropertyGroup>
+    <CoreCompileDependsOn>
+      ValidateBuildEnvironment;
+      $(CoreCompileDependsOn);
+    </CoreCompileDependsOn>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

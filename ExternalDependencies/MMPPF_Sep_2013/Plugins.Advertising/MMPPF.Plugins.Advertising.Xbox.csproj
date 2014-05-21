@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C382AA52-AA5E-4AC9-98AC-2C9717D810F9}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.SilverlightMediaFramework.Plugins.Advertising</RootNamespace>
+    <AssemblyName>MMPPF.Plugins.Advertising.Xbox</AssemblyName>
+    <DesignTime Condition="'$(SolutionPath)'!='' AND Exists('$(SolutionPath)')">true</DesignTime>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkDirectory>$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0\</TargetFrameworkDirectory>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName></SccProjectName>
+    <SccLocalPath></SccLocalPath>
+    <SccAuxPath></SccAuxPath>
+    <SccProvider></SccProvider>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;OOB;FULLSCREEN;HACKMODE;HTTP_ONLY;HACK_0929;LIMITBITRATE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;OOB;FULLSCREEN;HACKMODE;HTTP_ONLY;HACK_0929;LIMITBITRATE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Microsoft.SilverlightMediaFramework.Plugins.Advertising.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Media.SmoothStreaming" />
+    <Reference Include="Microsoft.Xbox, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="MMPPF.Core.Xbox, Version=0.0.0.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="MMPPF.Plugins.Xbox" />
+    <Reference Include="MMPPF.Utilities.Xbox" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\AsyncHelper.cs" />
+    <Compile Include="Helpers\ConversionHelper.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\ReflectionHelper.cs" />
+    <Compile Include="MAST\ConditionManager.cs" />
+    <Compile Include="MAST\MastMarkerProviderBase.cs" />
+    <Compile Include="MAST\IMastAdapter.cs" />
+    <Compile Include="MAST\LogEntryTypes.cs" />
+    <Compile Include="MAST\Mainsail.cs" />
+    <Compile Include="MAST\Mast.designer.cs" />
+    <Compile Include="MAST\MastAdapter.cs" />
+    <Compile Include="MAST\MastEventArgs.cs" />
+    <Compile Include="MAST\MastMarkerProvider.cs" />
+    <Compile Include="MAST\ModelExtensions.cs" />
+    <Compile Include="MAST\TriggerEventArgs.cs" />
+    <Compile Include="MAST\TriggerManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\MastMarkerProviderResources.Designer.cs">
+      <DependentUpon>MastMarkerProviderResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\VastAdHandlerResources.Designer.cs">
+      <DependentUpon>VastAdHandlerResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\VpaidResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VpaidResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="VAST\AdCompletedEventArgs.cs" />
+    <Compile Include="VAST\AdModels.cs" />
+    <Compile Include="VAST\AdUnitBase.cs" />
+    <Compile Include="VPAID\AdHandlerBase.cs" />
+    <Compile Include="VAST\CreativeSources\CompanionSource.cs" />
+    <Compile Include="VAST\CreativeSources\LinearSource.cs" />
+    <Compile Include="VAST\CreativeSources\NonLinearSource.cs" />
+    <Compile Include="VAST\LogEntryTypes.cs" />
+    <Compile Include="VAST\AdHandler.cs" />
+    <Compile Include="VAST\VastAdModels.cs" />
+    <Compile Include="VAST\VastAdUnit.cs" />
+    <Compile Include="VAST\VastCreativeFactory.cs" />
+    <Compile Include="VAST\VastSerialization.cs" />
+    <Compile Include="VAST\Vast_2_0_1.cs" />
+    <Compile Include="VPAID\ActiveCreative.cs" />
+    <Compile Include="VPAID\ActiveCreativeEventArgs.cs" />
+    <Compile Include="VPAID\AdClickThruEventArgs.cs" />
+    <Compile Include="VPAID\AdMessageEventArgs.cs" />
+    <Compile Include="VPAID\AdPlayerHost.cs" />
+    <Compile Include="VPAID\ClickableAdPlayerHost.cs" />
+    <Compile Include="VPAID\CreativeEventArgs.cs" />
+    <Compile Include="VPAID\IAsyncAdPayload.cs" />
+    <Compile Include="VPAID\ICreativeSource.cs" />
+    <Compile Include="VPAID\IVpaid.cs" />
+    <Compile Include="VPAID\IVpaidLinearBehavior.cs" />
+    <Compile Include="VPAID\IVpaidFactory.cs" />
+    <Compile Include="VPAID\IVpaidSupportsPreloading.cs" />
+    <Compile Include="VPAID\LogEntryTypes.cs" />
+    <Compile Include="VPAID\Players\AdaptiveVideoAdPlayer.cs" />
+    <Compile Include="VPAID\Players\AdClipLinearAdPlayer.cs" />
+    <Compile Include="VPAID\Players\ImageAdPlayer.cs" />
+    <Compile Include="VPAID\Players\AdPlayerBase.cs" />
+    <Compile Include="VPAID\Players\ProgressiveVideoAdPlayer.cs" />
+    <Compile Include="VPAID\Players\QuartileAdPlayerBase.cs" />
+    <Compile Include="VPAID\Plugins\AdaptiveVideoAdPlayerFactory.cs" />
+    <Compile Include="VPAID\Plugins\AdClipLinearAdPlayerFactory.cs" />
+    <Compile Include="VPAID\Plugins\ImageAdPlayerFactory.cs" />
+    <Compile Include="VPAID\Plugins\ProgressiveVideoAdPlayerFactory.cs" />
+    <Compile Include="VPAID\Targets\AdTargetBase.cs" />
+    <Compile Include="VPAID\Targets\BorderAdTarget.cs" />
+    <Compile Include="VPAID\Targets\ControlAdTarget.cs" />
+    <Compile Include="VPAID\Targets\FrameworkElementAdTarget.cs" />
+    <Compile Include="VPAID\Targets\IAdTarget.cs" />
+    <Compile Include="VPAID\Targets\PanelAdTarget.cs" />
+    <Compile Include="VPAID\TimeoutHelper.cs" />
+    <Compile Include="VPAID\VpaidController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MAST\Mast.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Microsoft.SilverlightMediaFramework.Plugins.Advertising.snk" />
+    <None Include="VAST\Vast.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\MastMarkerProviderResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MastMarkerProviderResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\VastAdHandlerResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VastAdHandlerResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\VpaidResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VpaidResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Xbox 360 ADK\Microsoft.Xbox360.Adk.App.targets" />
+  <!-- Ensure that projects won't try to, unsuccessfully, build in Blend -->
+  <Target Name="ValidateBuildEnvironment">
+    <Error Text="LakeView projects cannot be built in Blend. Use Visual Studio to build and deploy this project." Condition="'$(DesignTime)'=='true' AND '$(BuildingInsideExpressionBlend)'=='true'" />
+  </Target>
+  <PropertyGroup>
+    <CoreCompileDependsOn>
+      ValidateBuildEnvironment;
+      $(CoreCompileDependsOn);
+    </CoreCompileDependsOn>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

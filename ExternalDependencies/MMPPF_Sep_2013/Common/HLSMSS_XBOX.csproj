@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5F54622B-B744-495F-99ED-4C89F47E2608}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HLSMSS_XBOX</RootNamespace>
+    <AssemblyName>HLSMSS_XBOX</AssemblyName>
+    <DesignTime Condition="'$(SolutionPath)'!='' AND Exists('$(SolutionPath)')">true</DesignTime>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkDirectory>$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0\</TargetFrameworkDirectory>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <!-- Work around for a resgen on 64-bit OS issue -->
+  <PropertyGroup>
+    <ResGenTrackerFrameworkPath>$(MSBuildToolsPath32)</ResGenTrackerFrameworkPath>
+    <ResGenTrackerSDKPath>$(SDK40ToolsPath)</ResGenTrackerSDKPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;HLSMSS_TRACE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HLSMSS_XBOX.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xbox.Core" />
+    <Reference Include="Microsoft.Xbox.Services" />
+    <Reference Include="Microsoft.Xbox.Storage" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.Xbox">
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xbox.RuntimeHelpers" />
+    <Reference Include="System.Windows.Controls.Navigation">
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HLSMSSImplementation\AudioDataTypes.cs" />
+    <Compile Include="HLSMSSImplementation\BitstreamReader.cs" />
+    <Compile Include="HLSMSSImplementation\DDPlusParser.cs" />
+    <Compile Include="HLSMSSImplementation\EncryptedStream.cs" />
+    <Compile Include="HLSMSSImplementation\H264Parser.cs" />
+    <Compile Include="HLSMSSImplementation\HLSMediaStreamSource.cs" />
+    <Compile Include="HLSMSSImplementation\HLSPlayback.cs" />
+    <Compile Include="HLSMSSImplementation\HLSPlaylist.cs" />
+    <Compile Include="HLSMSSImplementation\HLSTrace.cs" />
+    <Compile Include="HLSMSSImplementation\MediaFormatParser.cs" />
+    <Compile Include="HLSMSSImplementation\NullParser.cs" />
+    <Compile Include="HLSMSSImplementation\PESParser.cs" />
+    <Compile Include="HLSMSSImplementation\SampleBuffer.cs" />
+    <Compile Include="HLSMSSImplementation\TSDemux.cs" />
+    <Compile Include="HLSMSSImplementation\WorkQueue.cs" />
+    <Compile Include="HLSMSSImplementation\WorkQueueElement.cs" />
+    <Compile Include="HLSMSSImplementation\xbox\ADTSParser_xbox.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HLSMSS_XBOX.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Xbox 360 ADK\Microsoft.Xbox360.Adk.App.targets" />
+  <!-- Ensure that projects won't try to, unsuccessfully, build in Blend -->
+  <Target Name="ValidateBuildEnvironment">
+    <Error Text="LakeView projects cannot be built in Blend. Use Visual Studio to build and deploy this project." Condition="'$(DesignTime)'=='true' AND '$(BuildingInsideExpressionBlend)'=='true'" />
+  </Target>
+  <PropertyGroup>
+    <CoreCompileDependsOn>
+      ValidateBuildEnvironment;
+      $(CoreCompileDependsOn);
+    </CoreCompileDependsOn>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
