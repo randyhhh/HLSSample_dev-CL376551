@@ -22,7 +22,19 @@ namespace HLSPlayerApplication
         {
             InitializeComponent();
             Player.Loaded += new RoutedEventHandler(Player_Loaded);
+            LayoutRoot.GamePadButtonDown += new EventHandler<GamePadButtonEventArgs>(LayoutRoot_GamePadButtonDown);
             Player.PlayStateChanged += new EventHandler<Microsoft.SilverlightMediaFramework.Core.CustomEventArgs<Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaPluginState>>(Player_PlayStateChanged);
+        }
+
+        void LayoutRoot_GamePadButtonDown(object sender, GamePadButtonEventArgs e)
+        {
+            GamePadButtonDown += new EventHandler<GamePadButtonEventArgs>(HLSPlayerPage_GamePadButtonDown);
+
+        }
+
+        void HLSPlayerPage_GamePadButtonDown(object sender, GamePadButtonEventArgs e)
+        {
+           
         }
 
         void Player_PlayStateChanged(object sender, Microsoft.SilverlightMediaFramework.Core.CustomEventArgs<Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaPluginState> e)
@@ -32,6 +44,7 @@ namespace HLSPlayerApplication
 
         void Player_Loaded(object sender, RoutedEventArgs e)
         {
+            Player.Back += new EventHandler(Player_Back);
             var playlist = new ObservableCollection<PlaylistItem>();
             var playlistItem = new PlaylistItem()
             {
@@ -45,6 +58,15 @@ namespace HLSPlayerApplication
             playlist.Add(playlistItem);
             Player.Playlist = playlist;
             Player.Play();
+        }
+
+        void Player_Back(object sender, EventArgs e)
+        {
+            
+                if (NavigationService.CanGoBack)
+                {
+                    NavigationService.GoBack();
+                }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
